@@ -4,6 +4,7 @@ import { AesNFT__factory as AesNFTFactory, Locker__factory as LockerFactory } fr
 import { ChangeEvent, useState } from 'react';
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { getFirestore, collection, addDoc } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
 
 function MintNFT() {
 
@@ -17,6 +18,8 @@ function MintNFT() {
   const mAccount = useMetamask();
   const kAccount = useKeplr();
   const firebase = useFirebase();
+
+  const navigate = useNavigate();
 
   const mint = async () => {
     try {
@@ -85,7 +88,7 @@ function MintNFT() {
         return (
           <button
             type='button'
-            onClick={mint}
+            onClick={() => navigate('/')}
             className='py-2 px-4 bg-green-600 hover:bg-green-700 focus:ring-green-500 focus:ring-offset-green-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg '
           >
             Done
